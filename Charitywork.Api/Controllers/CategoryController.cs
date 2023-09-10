@@ -49,6 +49,8 @@ namespace CharityWork.Api.Controllers
         {
             _categoryService.UpdateCategory(category);
         }
+
+        //Something wrong here
         [HttpGet]
         [Route("GetCategoryCharity")]
 
