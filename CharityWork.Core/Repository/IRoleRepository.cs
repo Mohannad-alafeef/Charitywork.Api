@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 namespace CharityWork.Core.Repository {
 	public interface IRoleRepository {
 
+
 		 void CreateRole(Role role);
 		 Task<IEnumerable<Role>> GetRoles();
 		 Task<Role> GetRoleById(int id);
 		 void UpdateRole(Role role);
 		 void DeleteRole(int id);
+
 	}
 }
