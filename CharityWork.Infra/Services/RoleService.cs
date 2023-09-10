@@ -15,24 +15,24 @@ namespace CharityWork.Infra.Services {
 			_roleRepository = roleRepository;
 		}
 
-		public void createRole(Role role) {
-			_roleRepository.createRole(role);
+		public void CreateRole(Role role) {
+			_roleRepository.CreateRole(role);
 		}
 
-		public void deleteRole(int id) {
-			_roleRepository.deleteRole(id);
+		public void DeleteRole(int id) {
+			_roleRepository.DeleteRole(id);
 		}
 
-		public Task<Role> getRoleById(int id) {
-			return _roleRepository.getRoleById(id);
+		public Task<Role> GetRoleById(int id) {
+			return _roleRepository.GetRoleById(id);
 		}
 
-		public Task<IEnumerable<Role>> getRoles() {
-			return _roleRepository.getRoles();
+		public Task<IEnumerable<Role>> GetRoles() {
+			return _roleRepository.GetRoles();
 		}
 
-		public void updateRole(Role role) {
-			_roleRepository.updateRole(role);
+		public void UpdateRole(Role role) {
+			_roleRepository.UpdateRole(role);
 		}
 	}
 }

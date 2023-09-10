@@ -20,12 +20,12 @@ namespace CharityWork.Infra.Repository {
 			_connection = dbContext.Connection;
 		}
 
-		public Task<IEnumerable<UserLogin>> allLogin() {
+		public Task<IEnumerable<UserLogin>> AllLogin() {
 
 			return _connection.QueryAsync<UserLogin>("user_login_package.get_all_user_login", commandType:CommandType.StoredProcedure);
 		}
 
-		public void createLogin(UserLogin login) {
+		public void CreateLogin(UserLogin login) {
 			var parm = new DynamicParameters();
 			parm.Add("name",login.UserName, DbType.String, ParameterDirection.Input);
 			parm.Add("pass", login.Password, DbType.String, ParameterDirection.Input);
@@ -34,20 +34,20 @@ namespace CharityWork.Infra.Repository {
 			_connection.ExecuteAsync("user_login_package.create_user_login", parm,commandType: CommandType.StoredProcedure);
 		}
 
-		public void deleteLogin(int id) {
+		public void DeleteLogin(int id) {
 			var parm = new DynamicParameters();
 			parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
 			_connection.ExecuteAsync("user_login_package.delete_user_login", parm, commandType: CommandType.StoredProcedure);
 
 		}
 
-		public Task<UserLogin> getLogin(int id) {
+		public Task<UserLogin> GetLogin(int id) {
 			var parm = new DynamicParameters();
 			parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
 			return _connection.QuerySingleAsync<UserLogin>("user_login_package.get_by_id",parm, commandType: CommandType.StoredProcedure);
 		}
 
-		public void updateLogin(UserLogin login) {
+		public void UpdateLogin(UserLogin login) {
 			var parm = new DynamicParameters();
 			parm.Add("id", login.LoginId, DbType.Int64, ParameterDirection.Input);
 			parm.Add("name", login.UserName, DbType.String, ParameterDirection.Input);
