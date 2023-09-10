@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CharityWork.Core.Repository {
 	public interface ILoginRepository {
-		//TEST
+	
 		void createLogin(UserLogin login);
 		void updateLogin(UserLogin login);
 		void deleteLogin(int id);
