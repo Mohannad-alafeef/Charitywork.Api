@@ -15,8 +15,8 @@ namespace CharityWork.Api.Controllers {
 		}
 
 		[HttpGet]
-        [Route("GetAllLogin")]
-        public Task<IEnumerable<UserLogin>> allLogin() {
+    [Route("GetAllLogin")]
+    public Task<IEnumerable<UserLogin>> allLogin() {
 			return _loginService.allLogin();
 		}
 		[HttpPost]
@@ -40,6 +40,7 @@ namespace CharityWork.Api.Controllers {
         [Route("UpdateLogin")]
         public void updateLogin(UserLogin login) {
 			_loginService.updateLogin(login);
+
 		}
 	}
 }

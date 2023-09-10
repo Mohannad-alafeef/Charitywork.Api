@@ -16,24 +16,24 @@ namespace CharityWork.Infra.Services {
 			_loginRepository = loginRepository;
 		}
 
-		public Task<IEnumerable<UserLogin>> allLogin() {
-			return _loginRepository.allLogin();
+		public Task<IEnumerable<UserLogin>> AllLogin() {
+			return _loginRepository.AllLogin();
 		}
 
-		public void createLogin(UserLogin login) {
-			_loginRepository.createLogin(login);
+		public void CreateLogin(UserLogin login) {
+			_loginRepository.CreateLogin(login);
 		}
 
-		public void deleteLogin(int id) {
-			_loginRepository.deleteLogin(id);
+		public void DeleteLogin(int id) {
+			_loginRepository.DeleteLogin(id);
 		}
 
-		public Task<UserLogin> getLogin(int id) {
-			return _loginRepository.getLogin(id);
+		public Task<UserLogin> GetLogin(int id) {
+			return _loginRepository.GetLogin(id);
 		}
 
-		public void updateLogin(UserLogin login) {
-			_loginRepository.updateLogin(login);
+		public void UpdateLogin(UserLogin login) {
+			_loginRepository.UpdateLogin(login);
 		}
 	}
 }
