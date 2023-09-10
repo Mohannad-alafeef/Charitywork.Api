@@ -18,7 +18,7 @@ namespace CharityWork.Api.Controllers {
 
 		[HttpPost]
 		public async Task<IActionResult> CreateAccount([FromForm]UserAccount userAccount) {
-
+			//testdwdawdw
 			var file = Request.Form.Files[0];
 			var extention = Path.GetExtension(file.FileName);
 			var fileName = Guid.NewGuid().ToString() + extention;
