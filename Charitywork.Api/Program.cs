@@ -1,5 +1,9 @@
 using CharityWork.Core.Common;
+using CharityWork.Core.Repository;
+using CharityWork.Core.Services;
 using CharityWork.Infra.Common;
+using CharityWork.Infra.Repository;
+using CharityWork.Infra.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//repos
+builder.Services.AddScoped<IRoleRepository,RoleRepository>();
 //services
 builder.Services.AddScoped<IDbContext, DbContext>();
+builder.Services.AddScoped<IRoleService,RoleService>();
+
 
 var app = builder.Build();
 
