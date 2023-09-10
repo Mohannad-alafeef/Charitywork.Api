@@ -12,15 +12,15 @@ namespace CharityWork.Api.Controllers {
 		public RoleController(IRoleService roleService) {
 			_roleService = roleService;
 		}
-	
 
 		[HttpPost]
-        [Route("CreateRole")]
+    [Route("CreateRole")]
         public void createRole(Role role) {
 			_roleService.createRole(role);
 		}
 
 		[HttpGet]
+
         [Route("GetAllRoles")]
         public Task<IEnumerable<Role>> getRoles() {
 			return _roleService.getRoles();
