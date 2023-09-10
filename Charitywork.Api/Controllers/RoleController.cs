@@ -12,6 +12,7 @@ namespace CharityWork.Api.Controllers {
 		public RoleController(IRoleService roleService) {
 			_roleService = roleService;
 		}
+		//
 
 		[HttpPost]
 		public void createRole(Role role) {
