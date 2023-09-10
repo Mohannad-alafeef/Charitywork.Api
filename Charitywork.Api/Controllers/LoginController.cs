@@ -15,23 +15,30 @@ namespace CharityWork.Api.Controllers {
 		}
 
 		[HttpGet]
-		public Task<IEnumerable<UserLogin>> allLogin() {
+        [Route("GetAllLogin")]
+        public Task<IEnumerable<UserLogin>> allLogin() {
 			return _loginService.allLogin();
 		}
 		[HttpPost]
-		public void createLogin(UserLogin login) {
+        [Route("CreateLogin")]
+        public void createLogin(UserLogin login) {
 			_loginService.createLogin(login);
 		}
-		[HttpDelete("{id}")]
-		public void deleteLogin(int id) {
+
+		[HttpDelete]
+        [Route("DeleteLogin/{id}")]
+        public void deleteLogin(int id) {
 			_loginService.deleteLogin(id);
 		}
-		[HttpGet("{id}")]
-		public Task<UserLogin> getLogin(int id) {
+
+		[HttpGet]
+        [Route("GetLoginById/{id}")]
+        public Task<UserLogin> getLogin(int id) {
 			return _loginService.getLogin(id);
 		}
-		[HttpPost("Update")]
-		public void updateLogin(UserLogin login) {
+		[HttpPost]
+        [Route("UpdateLogin")]
+        public void updateLogin(UserLogin login) {
 			_loginService.updateLogin(login);
 		}
 	}
