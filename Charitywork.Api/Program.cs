@@ -16,9 +16,11 @@ builder.Services.AddSwaggerGen();
 
 //repos
 builder.Services.AddScoped<IRoleRepository,RoleRepository>();
+builder.Services.AddScoped<ILoginRepository,LoginRepository>();
 //services
 builder.Services.AddScoped<IDbContext, DbContext>();
 builder.Services.AddScoped<IRoleService,RoleService>();
+builder.Services.AddScoped<ILoginService,LoginService>();
 
 
 var app = builder.Build();
