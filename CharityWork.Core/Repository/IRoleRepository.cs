@@ -13,5 +13,6 @@ namespace CharityWork.Core.Repository {
 		 Task<Role> getRoleById(int id);
 		 void updateRole(Role role);
 		 void deleteRole(int id);
+		//walaatest
 	}
 }
