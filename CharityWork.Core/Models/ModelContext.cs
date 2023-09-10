@@ -7,6 +7,7 @@ namespace CharityWork.Core.Models
 {
     public partial class ModelContext : DbContext
     {
+        //m
         public ModelContext()
         {
         }
