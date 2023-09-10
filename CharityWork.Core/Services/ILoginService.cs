@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CharityWork.Core.Services {
 	public interface ILoginService {
-		void createLogin(UserLogin login);
-		void updateLogin(UserLogin login);
-		void deleteLogin(int id);
-		Task<IEnumerable<UserLogin>> allLogin();
-		Task<UserLogin> getLogin(int id);
+		void CreateLogin(UserLogin login);
+		void UpdateLogin(UserLogin login);
+		void DeleteLogin(int id);
+		Task<IEnumerable<UserLogin>> AllLogin();
+		Task<UserLogin> GetLogin(int id);
 	}
 }
