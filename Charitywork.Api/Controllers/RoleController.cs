@@ -30,7 +30,7 @@ namespace CharityWork.Api.Controllers {
 		public void updateRole(Role role) {
 			_roleService.updateRole(role);
 		}
-		[HttpPost("delete/{id}")]
+		[HttpDelete("{id}")]
 		public void deleteRole(int id) {
 			_roleService.deleteRole(id);
 		}
