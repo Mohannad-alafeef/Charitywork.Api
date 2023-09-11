@@ -16,29 +16,29 @@ namespace CharityWork.Api.Controllers {
 		[HttpPost]
     [Route("CreateRole")]
         public void createRole(Role role) {
-			_roleService.createRole(role);
+			_roleService.CreateRole(role);
 		}
 
 		[HttpGet]
 
         [Route("GetAllRoles")]
         public Task<IEnumerable<Role>> getRoles() {
-			return _roleService.getRoles();
+			return _roleService.GetRoles();
 		}
 		[HttpGet]
         [Route("GetRoleById/{id}")]
         public Task<Role> getRoleById(int id) {
-			return _roleService.getRoleById(id);
+			return _roleService.GetRoleById(id);
 		}
 		[HttpPost]
         [Route("UpdateRole")]
         public void updateRole(Role role) {
-			_roleService.updateRole(role);
+			_roleService.UpdateRole(role);
 		}
 		[HttpDelete]
         [Route("DeleteRole/{id}")]
         public void deleteRole(int id) {
-			_roleService.deleteRole(id);
+			_roleService.DeleteRole(id);
 		}
 
 	}

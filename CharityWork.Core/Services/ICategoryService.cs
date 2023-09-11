@@ -12,7 +12,7 @@ namespace CharityWork.Core.Services
         Task<IEnumerable<Category>> GetAllCategory();
         public void CreateCategory(Category category);
         public void DeleteCategory(int id);
-        Task<Category> GetCategoryId(int id);
+        public Category GetCategoryId(int id);
         void UpdateCategory(Category category);
         Task<List<Category>> GetCategoryCharity();
     }
