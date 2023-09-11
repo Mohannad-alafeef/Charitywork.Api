@@ -23,6 +23,11 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddScoped<IAccountRepository,AccountRepository>();
 
+//
+builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
+builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
+builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
+
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILoginService,LoginService>();
@@ -32,6 +37,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAccountService,AccountService>();
 
 
+//
+builder.Services.AddScoped<IHomePageService, HomePageService>();
+builder.Services.AddScoped<IContactPageService, ContactPageService>();
+builder.Services.AddScoped<IAboutPageService, AboutPageService>();
 
 var app = builder.Build();
 
