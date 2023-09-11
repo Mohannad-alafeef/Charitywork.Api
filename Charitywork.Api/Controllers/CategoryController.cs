@@ -15,7 +15,7 @@ namespace CharityWork.Api.Controllers
         {
             _categoryService = categoryService;
         }
-
+        //test
         [HttpGet]
         [Route("GetAllCategory")]
         public Task<IEnumerable<Category>> GetAllCategory()
