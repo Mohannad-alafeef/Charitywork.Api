@@ -9,11 +9,11 @@ namespace CharityWork.Core.Services
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<Category>> GetAllCategory();
-        public void CreateCategory(Category category);
+        Task<IEnumerable<Testimonial>> GetAllCategory();
+        public void CreateCategory(Testimonial Testimonial);
         public void DeleteCategory(int id);
-        public Category GetCategoryId(int id);
-        void UpdateCategory(Category category);
-        Task<List<Category>> GetCategoryCharity();
+        public Testimonial GetCategoryId(int id);
+        void UpdateCategory(Testimonial Testimonial);
+        Task<List<Testimonial>> GetCategoryCharity();
     }
 }

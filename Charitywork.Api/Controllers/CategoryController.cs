@@ -18,15 +18,15 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("GetAllCategory")]
-        public Task<IEnumerable<Category>> GetAllCategory()
+        public Task<IEnumerable<Testimonial>> GetAllCategory()
         {
             return _categoryService.GetAllCategory();
         }
         [HttpPost]
         [Route("CreateCategory")]
-        public void CreateCategory(Category category)
+        public void CreateCategory(Testimonial Testimonial)
         {
-            _categoryService.CreateCategory(category);
+            _categoryService.CreateCategory(Testimonial);
         }
 
         [HttpDelete]
@@ -38,30 +38,30 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("GetCategoryId/{id}")]
-        public Category GetCategoryId(int id)
+        public Testimonial GetCategoryId(int id)
         {
             return _categoryService.GetCategoryId(id);
         }
 
         [HttpPost]
         [Route("UpdateCategory")]
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(Testimonial Testimonial)
         {
-            _categoryService.UpdateCategory(category);
+            _categoryService.UpdateCategory(Testimonial);
         }
 
         //Something wrong here
         [HttpGet]
         [Route("GetCategoryCharity")]
 
-        public Task<List<Category>> GetCategoryCharity()
+        public Task<List<Testimonial>> GetCategoryCharity()
         {
             return _categoryService.GetCategoryCharity() ;
         }
 
         [HttpPost]
         [Route("UploadImage")]
-        public Category UploadIMage()
+        public Testimonial UploadIMage()
         {
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
@@ -73,7 +73,7 @@ namespace CharityWork.Api.Controllers
             {
                 file.CopyTo(stream);
             }
-            Category item = new Category();
+            Testimonial item = new Testimonial();
             item.ImagePath = fileName;
             return item;
         }

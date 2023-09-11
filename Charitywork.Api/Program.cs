@@ -18,19 +18,18 @@ builder.Services.AddScoped<IDbContext, DbContext>();
 //repos
 builder.Services.AddScoped<IRoleRepository,RoleRepository>();
 builder.Services.AddScoped<ILoginRepository,LoginRepository>();
-
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
 builder.Services.AddScoped<IAccountRepository,AccountRepository>();
+builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILoginService,LoginService>();
-
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-
 builder.Services.AddScoped<IAccountService,AccountService>();
-
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+builder.Services.AddScoped<IWalletService, WalletService>();
 
 
 var app = builder.Build();
