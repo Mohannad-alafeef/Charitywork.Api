@@ -35,6 +35,22 @@ namespace CharityWork.Api.Controllers
         {
             _aboutPageService.deleteAboutPage(id);
         }
+        [Route("uploadImage")]
+        [HttpPost]
+        public AboutUsPage UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() +
+            "_" + file.FileName;
+            var fullPath = Path.Combine("Images", fileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            AboutUsPage item = new AboutUsPage();
+            item.ImagePath = fileName;
+            return item;
+        }
 
     }
 }
