@@ -6,7 +6,7 @@ namespace CharityWork.Core.Models
     public partial class Payment
     {
         public decimal PaymentId { get; set; }
-        public string? PaymentType { get; set; }
+        public decimal? PaymentType { get; set; }
         public DateTime? PaymentDate { get; set; }
         public decimal? Amount { get; set; }
         public decimal? UserId { get; set; }
