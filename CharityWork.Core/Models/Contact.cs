@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CharityWork.Api.Models
+namespace CharityWork.Core.Models
 {
     public partial class Contact
     {
