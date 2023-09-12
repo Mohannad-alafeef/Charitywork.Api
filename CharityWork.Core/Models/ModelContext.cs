@@ -18,7 +18,7 @@ namespace CharityWork.Core.Models
         }
 
         public virtual DbSet<AboutUsPage> AboutUsPages { get; set; } = null!;
-        public virtual DbSet<Testimonial> Categories { get; set; } = null!;
+        public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Charity> Charities { get; set; } = null!;
         public virtual DbSet<ContactUsPage> ContactUsPages { get; set; } = null!;
         public virtual DbSet<Goal> Goals { get; set; } = null!;
@@ -77,9 +77,9 @@ namespace CharityWork.Core.Models
                     .HasConstraintName("FK_HOME_ABOUT");
             });
 
-            modelBuilder.Entity<Testimonial>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
-                entity.ToTable("Testimonial");
+                entity.ToTable("Category");
 
                 entity.Property(e => e.CategoryId)
                     .HasColumnType("NUMBER")
@@ -151,7 +151,7 @@ namespace CharityWork.Core.Models
                     .HasColumnType("NUMBER")
                     .HasColumnName("USER_ID");
 
-                entity.HasOne(d => d.Testimonial)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Charities)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.SetNull)
