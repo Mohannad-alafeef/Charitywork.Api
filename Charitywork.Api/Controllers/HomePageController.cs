@@ -37,6 +37,22 @@ namespace CharityWork.Api.Controllers
         {
             _homePageServices.updateHomePage(homePage);
         }
+        [Route("uploadImage")]
+        [HttpPost]
+        public HomePage UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() +
+            "_" + file.FileName;
+            var fullPath = Path.Combine("Images", fileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            HomePage item = new HomePage();
+            item.ImagePath = fileName;
+            return item;
+        }
 
     }
 }
