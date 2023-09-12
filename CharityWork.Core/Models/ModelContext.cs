@@ -7,7 +7,6 @@ namespace CharityWork.Core.Models
 {
     public partial class ModelContext : DbContext
     {
-        //m
         public ModelContext()
         {
         }
@@ -20,19 +19,20 @@ namespace CharityWork.Core.Models
         public virtual DbSet<AboutUsPage> AboutUsPages { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Charity> Charities { get; set; } = null!;
+        public virtual DbSet<Contact> Contacts { get; set; } = null!;
         public virtual DbSet<ContactUsPage> ContactUsPages { get; set; } = null!;
         public virtual DbSet<Goal> Goals { get; set; } = null!;
         public virtual DbSet<HomePage> HomePages { get; set; } = null!;
+        public virtual DbSet<IssuesReport> IssuesReports { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
-        public virtual DbSet<ProblemReport> ProblemReports { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Testimonial> Testimonials { get; set; } = null!;
         public virtual DbSet<TestimonialPage> TestimonialPages { get; set; } = null!;
         public virtual DbSet<UserAccount> UserAccounts { get; set; } = null!;
         public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
-        public virtual DbSet<Visa> Visas { get; set; } = null!;
-        public virtual DbSet<Wallet> Wallets { get; set; } = null!;
- 
+        public virtual DbSet<VisaCard> VisaCards { get; set; } = null!;
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -164,6 +164,36 @@ namespace CharityWork.Core.Models
                     .HasConstraintName("FK_USER_ID");
             });
 
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.ToTable("CONTACT");
+
+                entity.Property(e => e.ContactId)
+                    .HasColumnType("NUMBER(38)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("CONTACT_ID");
+
+                entity.Property(e => e.ContactContent)
+                    .HasMaxLength(1000)
+                    .HasColumnName("CONTACT_CONTENT");
+
+                entity.Property(e => e.ContactStatus)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("CONTACT_STATUS");
+
+                entity.Property(e => e.ContactSubject)
+                    .HasMaxLength(200)
+                    .HasColumnName("CONTACT_SUBJECT");
+
+                entity.Property(e => e.SenderEmail)
+                    .HasMaxLength(100)
+                    .HasColumnName("SENDER_EMAIL");
+
+                entity.Property(e => e.SenderName)
+                    .HasMaxLength(100)
+                    .HasColumnName("SENDER_NAME");
+            });
+
             modelBuilder.Entity<ContactUsPage>(entity =>
             {
                 entity.HasKey(e => e.ContactId)
@@ -265,6 +295,38 @@ namespace CharityWork.Core.Models
                     .HasColumnName("TITLE");
             });
 
+            modelBuilder.Entity<IssuesReport>(entity =>
+            {
+                entity.HasKey(e => e.ProblemId)
+                    .HasName("SYS_C008480");
+
+                entity.ToTable("ISSUES_REPORT");
+
+                entity.Property(e => e.ProblemId)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("PROBLEM_ID");
+
+                entity.Property(e => e.Message)
+                    .HasMaxLength(3000)
+                    .IsUnicode(false)
+                    .HasColumnName("MESSAGE");
+
+                entity.Property(e => e.ReportDate)
+                    .HasColumnType("DATE")
+                    .HasColumnName("REPORT_DATE");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("USER_ID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.IssuesReports)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_USER_PROBLEM");
+            });
+
             modelBuilder.Entity<Payment>(entity =>
             {
                 entity.ToTable("PAYMENT");
@@ -287,8 +349,7 @@ namespace CharityWork.Core.Models
                     .HasColumnName("PAYMENT_DATE");
 
                 entity.Property(e => e.PaymentType)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
+                    .HasColumnType("NUMBER(38)")
                     .HasColumnName("PAYMENT_TYPE");
 
                 entity.Property(e => e.UserId)
@@ -306,38 +367,6 @@ namespace CharityWork.Core.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_USER_PAYMENT");
-            });
-
-            modelBuilder.Entity<ProblemReport>(entity =>
-            {
-                entity.HasKey(e => e.ProblemId)
-                    .HasName("SYS_C008480");
-
-                entity.ToTable("PROBLEM_REPORT");
-
-                entity.Property(e => e.ProblemId)
-                    .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("PROBLEM_ID");
-
-                entity.Property(e => e.Message)
-                    .HasMaxLength(3000)
-                    .IsUnicode(false)
-                    .HasColumnName("MESSAGE");
-
-                entity.Property(e => e.ReportDate)
-                    .HasColumnType("DATE")
-                    .HasColumnName("REPORT_DATE");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnType("NUMBER")
-                    .HasColumnName("USER_ID");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.ProblemReports)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.SetNull)
-                    .HasConstraintName("FK_USER_PROBLEM");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -538,23 +567,25 @@ namespace CharityWork.Core.Models
                     .HasConstraintName("FK_ROLE_ID");
             });
 
-            modelBuilder.Entity<Visa>(entity =>
+            modelBuilder.Entity<VisaCard>(entity =>
             {
-                entity.ToTable("VISA");
+                entity.HasKey(e => e.VisaId)
+                    .HasName("SYS_C008493");
+
+                entity.ToTable("VISA_CARD");
 
                 entity.Property(e => e.VisaId)
-                    .HasColumnType("NUMBER")
+                    .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("VISA_ID");
 
                 entity.Property(e => e.Balance)
-                    .HasColumnType("NUMBER")
+                    .HasColumnType("NUMBER(38)")
                     .HasColumnName("BALANCE");
 
-                entity.Property(e => e.Cardnumber)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("CARDNUMBER");
+                entity.Property(e => e.CardNumber)
+                    .HasMaxLength(50)
+                    .HasColumnName("CARD_NUMBER");
 
                 entity.Property(e => e.Cvv)
                     .HasColumnType("NUMBER(38)")
@@ -564,44 +595,15 @@ namespace CharityWork.Core.Models
                     .HasColumnType("DATE")
                     .HasColumnName("EXP_DATE");
 
-                entity.Property(e => e.OwnerEmail)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("OWNER_EMAIL");
-
-                entity.Property(e => e.OwnerName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("OWNER_NAME");
-            });
-
-            modelBuilder.Entity<Wallet>(entity =>
-            {
-                entity.ToTable("WALLET");
-
-                entity.Property(e => e.WalletId)
-                    .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("WALLET_ID");
-
-                entity.Property(e => e.Balance)
-                    .HasColumnType("NUMBER")
-                    .HasColumnName("BALANCE");
-
-                entity.Property(e => e.Iban)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("IBAN");
-
                 entity.Property(e => e.UserId)
-                    .HasColumnType("NUMBER")
+                    .HasColumnType("NUMBER(38)")
                     .HasColumnName("USER_ID");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.Wallets)
+                    .WithMany(p => p.VisaCards)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.SetNull)
-                    .HasConstraintName("FK_USER_WALLET");
+                    .HasConstraintName("FK_VU");
             });
 
             OnModelCreatingPartial(modelBuilder);

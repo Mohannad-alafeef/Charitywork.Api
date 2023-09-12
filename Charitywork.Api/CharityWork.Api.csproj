@@ -19,4 +19,9 @@
     <ProjectReference Include="..\CharityWork.Infra\CharityWork.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

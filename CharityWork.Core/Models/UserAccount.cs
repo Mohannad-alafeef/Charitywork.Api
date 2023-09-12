@@ -8,10 +8,10 @@ namespace CharityWork.Core.Models
         public UserAccount()
         {
             Charities = new HashSet<Charity>();
+            IssuesReports = new HashSet<IssuesReport>();
             Payments = new HashSet<Payment>();
-            ProblemReports = new HashSet<ProblemReport>();
             Testimonials = new HashSet<Testimonial>();
-            Wallets = new HashSet<Wallet>();
+            VisaCards = new HashSet<VisaCard>();
         }
 
         public decimal UserId { get; set; }
@@ -29,9 +29,9 @@ namespace CharityWork.Core.Models
 
         public virtual UserLogin? Login { get; set; }
         public virtual ICollection<Charity> Charities { get; set; }
+        public virtual ICollection<IssuesReport> IssuesReports { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<ProblemReport> ProblemReports { get; set; }
         public virtual ICollection<Testimonial> Testimonials { get; set; }
-        public virtual ICollection<Wallet> Wallets { get; set; }
+        public virtual ICollection<VisaCard> VisaCards { get; set; }
     }
 }
