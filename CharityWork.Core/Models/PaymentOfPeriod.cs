@@ -9,6 +9,6 @@ namespace CharityWork.Core.Models
     public class PaymentOfPeriod
     {
         public decimal total { get;set; }
-        public int numberOfPayment { get;set; } 
+        public decimal numberOfPayment { get;set; } 
     }
 }

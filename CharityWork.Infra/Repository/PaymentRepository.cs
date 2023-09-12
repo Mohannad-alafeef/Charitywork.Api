@@ -49,14 +49,15 @@ namespace CharityWork.Infra.Repository
             parm.Add("paymentType", type, DbType.Int64, ParameterDirection.Input);
             return _connection.QueryAsync<Payment>("payment_package.get_by_type", parm, commandType: CommandType.StoredProcedure);
         }
-        public Task<IEnumerable<PaymentOfPeriod>> getPaymentByPeriod(DatesType dateSearch)
+        public List<PaymentOfPeriod> getPaymentByPeriod(DatesType dateSearch)
         {
             var parm = new DynamicParameters();
             parm.Add("fromDate", dateSearch.fromDate, DbType.Date, ParameterDirection.Input);
             parm.Add("toDate", dateSearch.toDate, DbType.Date, ParameterDirection.Input);
             parm.Add("paymentType", dateSearch.type, DbType.Int64, ParameterDirection.Input);
 
-            return _connection.QueryAsync<PaymentOfPeriod>("payment_package.get_by_period", parm, commandType: CommandType.StoredProcedure);
+            var p = _connection.Query<PaymentOfPeriod>("payment_package.get_by_period", parm, commandType: CommandType.StoredProcedure);
+            return p.ToList();
         }
 
 

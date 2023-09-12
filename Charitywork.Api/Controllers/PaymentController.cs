@@ -31,7 +31,7 @@ namespace CharityWork.Api.Controllers
             return _paymentService.getPaymentByType(type);
         }
         [HttpPost("getByDates")]
-        public Task<IEnumerable<PaymentOfPeriod>> getPaymentByPeriod(DatesType dateSearch)
+        public List<PaymentOfPeriod> getPaymentByPeriod(DatesType dateSearch)
         {
             return _paymentService.getPaymentByPeriod(dateSearch);
         }

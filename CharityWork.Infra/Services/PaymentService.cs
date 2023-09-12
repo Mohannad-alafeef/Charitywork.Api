@@ -30,7 +30,7 @@ namespace CharityWork.Infra.Services
         {
             return _paymentRepository.getPaymentByType(type);
         }
-        public Task<IEnumerable<PaymentOfPeriod>> getPaymentByPeriod(DatesType dateSearch)
+        public List<PaymentOfPeriod> getPaymentByPeriod(DatesType dateSearch)
         {
             return _paymentRepository.getPaymentByPeriod(dateSearch);
         }

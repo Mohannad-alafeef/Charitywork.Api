@@ -42,6 +42,7 @@ builder.Services.AddScoped<IAboutPageService, AboutPageService>();
 builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
 builder.Services.AddScoped<ICharityService, CharityService>();
 builder.Services.AddScoped<IGoalService, GoalService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 
 var app = builder.Build();
