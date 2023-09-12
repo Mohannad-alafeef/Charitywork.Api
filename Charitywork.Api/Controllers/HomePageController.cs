@@ -11,7 +11,7 @@ namespace CharityWork.Api.Controllers
     public class HomePageController : ControllerBase
     {
         private readonly IHomePageService _homePageServices;
-        //dwad
+        
         public HomePageController(IHomePageService homePageServices) 
         {
             _homePageServices= homePageServices;
