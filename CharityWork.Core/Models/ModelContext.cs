@@ -7,7 +7,6 @@ namespace CharityWork.Core.Models
 {
     public partial class ModelContext : DbContext
     {
-        //m
         public ModelContext()
         {
         }
@@ -20,6 +19,7 @@ namespace CharityWork.Core.Models
         public virtual DbSet<AboutUsPage> AboutUsPages { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Charity> Charities { get; set; } = null!;
+        public virtual DbSet<Contact> Contacts { get; set; } = null!;
         public virtual DbSet<ContactUsPage> ContactUsPages { get; set; } = null!;
         public virtual DbSet<Goal> Goals { get; set; } = null!;
         public virtual DbSet<HomePage> HomePages { get; set; } = null!;
@@ -32,7 +32,8 @@ namespace CharityWork.Core.Models
         public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
         public virtual DbSet<Visa> Visas { get; set; } = null!;
         public virtual DbSet<Wallet> Wallets { get; set; } = null!;
- 
+
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -79,7 +80,7 @@ namespace CharityWork.Core.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.ToTable("Category");
+                entity.ToTable("CATEGORY");
 
                 entity.Property(e => e.CategoryId)
                     .HasColumnType("NUMBER")
@@ -162,6 +163,38 @@ namespace CharityWork.Core.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_USER_ID");
+            });
+
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("CONTACT");
+
+                entity.Property(e => e.ContactContent)
+                    .HasMaxLength(1000)
+                    .HasColumnName("CONTACT_CONTENT");
+
+                entity.Property(e => e.ContactId)
+                    .HasColumnType("NUMBER(38)")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("CONTACT_ID");
+
+                entity.Property(e => e.ContactStatus)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("CONTACT_STATUS");
+
+                entity.Property(e => e.ContactSubject)
+                    .HasMaxLength(200)
+                    .HasColumnName("CONTACT_SUBJECT");
+
+                entity.Property(e => e.SenderEmail)
+                    .HasMaxLength(100)
+                    .HasColumnName("SENDER_EMAIL");
+
+                entity.Property(e => e.SenderName)
+                    .HasMaxLength(100)
+                    .HasColumnName("SENDER_NAME");
             });
 
             modelBuilder.Entity<ContactUsPage>(entity =>
