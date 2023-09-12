@@ -38,7 +38,7 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("GetCategoryId/{id}")]
-        public Task<Category> GetCategoryId(int id)
+        public Category GetCategoryId(int id)
         {
             return _categoryService.GetCategoryId(id);
         }
@@ -57,6 +57,25 @@ namespace CharityWork.Api.Controllers
         public Task<List<Category>> GetCategoryCharity()
         {
             return _categoryService.GetCategoryCharity() ;
+        }
+
+        [HttpPost]
+        [Route("UploadImage")]
+        public Category UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var fullPath = Path.Combine("Images", fileName);
+
+
+
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Category item = new Category();
+            item.ImagePath = fileName;
+            return item;
         }
     }
 }

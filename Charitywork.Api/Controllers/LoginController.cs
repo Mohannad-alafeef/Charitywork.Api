@@ -17,6 +17,7 @@ namespace CharityWork.Api.Controllers {
 		[HttpGet]
     [Route("GetAllLogin")]
     public Task<IEnumerable<UserLogin>> AllLogin() {
+
 			return _loginService.AllLogin();
 		}
 		[HttpPost]

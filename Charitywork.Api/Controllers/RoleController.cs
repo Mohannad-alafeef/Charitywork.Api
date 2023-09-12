@@ -27,7 +27,9 @@ namespace CharityWork.Api.Controllers {
 		}
 		[HttpGet]
         [Route("GetRoleById/{id}")]
+
         public Task<Role> GetRoleById(int id) {
+
 			return _roleService.GetRoleById(id);
 		}
 		[HttpPost]
