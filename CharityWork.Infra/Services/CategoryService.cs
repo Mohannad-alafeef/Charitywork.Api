@@ -13,17 +13,17 @@ namespace CharityWork.Infra.Services
     public class CategoryService:ICategoryService
     {
 
-        private readonly ICategoryRepository _testimonialRepository;
+        private readonly ICategoryRepository Category_Package;
         public CategoryService(ICategoryRepository categoryRepository)
         {
-            _testimonialRepository = categoryRepository;
+            Category_Package = categoryRepository;
         }
-        public Task<IEnumerable<Testimonial>> GetAllCategory() {return _testimonialRepository.GetAllCategory(); }
-        public void CreateCategory(Testimonial Testimonial) { _testimonialRepository.CreateCategory(Testimonial); }
-        public void DeleteCategory(int id) { _testimonialRepository.DeleteCategory(id); }
-        public Testimonial GetCategoryId(int id) { return _testimonialRepository.GetCategoryId(id); }
-        public void UpdateCategory(Testimonial Testimonial) { _testimonialRepository.UpdateCategory(Testimonial); }
-        public  Task<List<Testimonial>> GetCategoryCharity() { return _testimonialRepository.GetCategoryCharity(); }
+        public Task<IEnumerable<Category>> GetAllCategory() {return Category_Package.GetAllCategory(); }
+        public void CreateCategory(Category category) { Category_Package.CreateCategory(category); }
+        public void DeleteCategory(int id) { Category_Package.DeleteCategory(id); }
+        public Category GetCategoryId(int id) { return Category_Package.GetCategoryId(id); }
+        public void UpdateCategory(Category category) { Category_Package.UpdateCategory(category); }
+        public  Task<List<Category>> GetCategoryCharity() { return Category_Package.GetCategoryCharity(); }
 
     }
 

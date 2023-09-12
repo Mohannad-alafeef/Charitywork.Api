@@ -23,54 +23,54 @@ namespace CharityWork.Infra.Repository
             _connection = dbContext.Connection;
         }
 
-        public Task<IEnumerable<Testimonial>> GetAllCategory()
+        public Task<IEnumerable<Category>> GetAllCategory()
         {
 
-            return _connection.QueryAsync<Testimonial>("testimonial_package.GetAllCategory", commandType: CommandType.StoredProcedure);
+            return _connection.QueryAsync<Category>("Category_Package.GetAllCategory", commandType: CommandType.StoredProcedure);
         }
 
-        public void CreateCategory(Testimonial Testimonial)
+        public void CreateCategory(Category category)
         {
             var parm = new DynamicParameters();
-            parm.Add("catName", Testimonial.CategoryName, DbType.String, ParameterDirection.Input);
-            parm.Add("image", Testimonial.ImagePath, DbType.String, ParameterDirection.Input);
+            parm.Add("catName", category.CategoryName, DbType.String, ParameterDirection.Input);
+            parm.Add("image", category.ImagePath, DbType.String, ParameterDirection.Input);
             
-            _connection.ExecuteAsync("testimonial_package.CreateCategory", parm, commandType: CommandType.StoredProcedure);
+            _connection.ExecuteAsync("Category_Package.CreateCategory", parm, commandType: CommandType.StoredProcedure);
         }
 
         public void DeleteCategory(int id)
         {
             var parm = new DynamicParameters();
             parm.Add("Id", id, DbType.Int64, ParameterDirection.Input);
-            _connection.ExecuteAsync("testimonial_package.DeleteCategory", parm, commandType: CommandType.StoredProcedure);
+            _connection.ExecuteAsync("Category_Package.DeleteCategory", parm, commandType: CommandType.StoredProcedure);
 
         }
 
-        public Testimonial GetCategoryId(int id)
+        public Category GetCategoryId(int id)
         {
             var parm = new DynamicParameters();
             parm.Add("Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Testimonial>("testimonial_package.GetCategoryId", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QueryFirstOrDefault<Category>("Category_Package.GetCategoryId", parm, commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateCategory(Testimonial Testimonial)
+        public void UpdateCategory(Category category)
         {
             var parm = new DynamicParameters();
-            parm.Add("Id", Testimonial.CategoryId, DbType.Int64, ParameterDirection.Input);
-            parm.Add("catName", Testimonial.CategoryName, DbType.String, ParameterDirection.Input);
-            parm.Add("image", Testimonial.ImagePath, DbType.String, ParameterDirection.Input);
+            parm.Add("Id", category.CategoryId, DbType.Int64, ParameterDirection.Input);
+            parm.Add("catName", category.CategoryName, DbType.String, ParameterDirection.Input);
+            parm.Add("image", category.ImagePath, DbType.String, ParameterDirection.Input);
 
-            _connection.ExecuteAsync("testimonial_package.UpdateCategory", parm, commandType: CommandType.StoredProcedure);
+            _connection.ExecuteAsync("Category_Package.UpdateCategory", parm, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<List<Testimonial>> GetCategoryCharity()
+        public async Task<List<Category>> GetCategoryCharity()
         {
-            var result1 = await _dbContext.Connection.QueryAsync<Testimonial, Charity,
-            Testimonial>("Charity_Package.GetAllCharitys",
-            (Testimonial, charity) =>
+            var result1 = await _dbContext.Connection.QueryAsync<Category, Charity,
+            Category>("Charity_Package.GetAllCharitys",
+            (Category, charity) =>
             {
-                Testimonial.Charities.Add(charity);
-                return Testimonial;
+                Category.Charities.Add(charity);
+                return Category;
             }, splitOn: "CategoryId", param: null, commandType: CommandType.StoredProcedure);
             var result2 = result1.GroupBy(p =>
             p.CategoryId).Select(g =>

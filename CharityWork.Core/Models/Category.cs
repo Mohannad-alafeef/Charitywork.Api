@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CharityWork.Core.Models
 {
-    public partial class Testimonial
+    public partial class Category
     {
-        public Testimonial()
+        public Category()
         {
             Charities = new HashSet<Charity>();
         }
