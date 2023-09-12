@@ -26,6 +26,10 @@ builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
 builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
 builder.Services.AddScoped<ITestimonialPageRepository,TestimonialPageRepository>();
 
+builder.Services.AddScoped<ICharityRepository, CharityRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IGoalRepository, GoalRepository>();
+
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILoginService,LoginService>();
@@ -36,6 +40,9 @@ builder.Services.AddScoped<IHomePageService, HomePageService>();
 builder.Services.AddScoped<IContactPageService, ContactPageService>();
 builder.Services.AddScoped<IAboutPageService, AboutPageService>();
 builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
+builder.Services.AddScoped<ICharityService, CharityService>();
+builder.Services.AddScoped<IGoalService, GoalService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 
 var app = builder.Build();
@@ -53,3 +60,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+////
