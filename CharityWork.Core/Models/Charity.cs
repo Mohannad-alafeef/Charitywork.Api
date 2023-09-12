@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 namespace CharityWork.Core.Models
@@ -23,7 +24,7 @@ namespace CharityWork.Core.Models
         public string? CharityName { get; set; }
         public decimal? DonationGoal { get; set; }
 
-        public virtual Testimonial? Testimonial { get; set; }
+        public virtual Category? Category { get; set; }
         public virtual UserAccount? User { get; set; }
         public virtual ICollection<Goal> Goals { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
