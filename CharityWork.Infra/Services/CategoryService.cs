@@ -13,17 +13,17 @@ namespace CharityWork.Infra.Services
     public class CategoryService:ICategoryService
     {
 
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository Category_Package;
         public CategoryService(ICategoryRepository categoryRepository)
         {
-            _categoryRepository = categoryRepository;
+            Category_Package = categoryRepository;
         }
-        public Task<IEnumerable<Category>> GetAllCategory() {return _categoryRepository.GetAllCategory(); }
-        public void CreateCategory(Category category) { _categoryRepository.CreateCategory(category); }
-        public void DeleteCategory(int id) { _categoryRepository.DeleteCategory(id); }
-        public  Task<Category> GetCategoryId(int id) { return _categoryRepository.GetCategoryId(id); }
-        public void UpdateCategory(Category category) { _categoryRepository.UpdateCategory(category); }
-        public  Task<List<Category>> GetCategoryCharity() { return _categoryRepository.GetCategoryCharity(); }
+        public Task<IEnumerable<Category>> GetAllCategory() {return Category_Package.GetAllCategory(); }
+        public void CreateCategory(Category category) { Category_Package.CreateCategory(category); }
+        public void DeleteCategory(int id) { Category_Package.DeleteCategory(id); }
+        public Category GetCategoryId(int id) { return Category_Package.GetCategoryId(id); }
+        public void UpdateCategory(Category category) { Category_Package.UpdateCategory(category); }
+        public  Task<List<Category>> GetCategoryCharity() { return Category_Package.GetCategoryCharity(); }
 
     }
 

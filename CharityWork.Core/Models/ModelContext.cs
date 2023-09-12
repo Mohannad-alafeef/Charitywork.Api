@@ -79,7 +79,7 @@ namespace CharityWork.Core.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.ToTable("CATEGORY");
+                entity.ToTable("Category");
 
                 entity.Property(e => e.CategoryId)
                     .HasColumnType("NUMBER")
