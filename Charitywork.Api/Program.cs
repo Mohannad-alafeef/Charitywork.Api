@@ -23,6 +23,11 @@ builder.Services.AddScoped<IAccountRepository,AccountRepository>();
 builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 
+//
+builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
+builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
+builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
+
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILoginService,LoginService>();
@@ -31,6 +36,10 @@ builder.Services.AddScoped<IAccountService,AccountService>();
 builder.Services.AddScoped<ITestimonialService, TestimonialService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
 
+//
+builder.Services.AddScoped<IHomePageService, HomePageService>();
+builder.Services.AddScoped<IContactPageService, ContactPageService>();
+builder.Services.AddScoped<IAboutPageService, AboutPageService>();
 
 var app = builder.Build();
 
