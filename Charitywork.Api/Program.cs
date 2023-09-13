@@ -29,6 +29,7 @@ builder.Services.AddScoped<ITestimonialPageRepository,TestimonialPageRepository>
 builder.Services.AddScoped<ICharityRepository, CharityRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IGoalRepository, GoalRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
@@ -43,6 +44,7 @@ builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
 builder.Services.AddScoped<ICharityService, CharityService>();
 builder.Services.AddScoped<IGoalService, GoalService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IContactService,ContactService>();
 
 
 var app = builder.Build();
