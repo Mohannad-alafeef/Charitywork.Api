@@ -66,12 +66,12 @@ namespace CharityWork.Infra.Repository
         public async Task<List<Category>> GetCategoryCharity()
         {
             var result1 = await _dbContext.Connection.QueryAsync<Category, Charity,
-            Category>("Charity_Package.GetAllCharitys",
+            Category>("Category_Package.GetCategoryCharity",
             (Category, charity) =>
             {
                 Category.Charities.Add(charity);
                 return Category;
-            }, splitOn: "CategoryId", param: null, commandType: CommandType.StoredProcedure);
+            }, splitOn: "CharityId", param: null, commandType: CommandType.StoredProcedure);
             var result2 = result1.GroupBy(p =>
             p.CategoryId).Select(g =>
             {
