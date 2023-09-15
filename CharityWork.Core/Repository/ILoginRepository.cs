@@ -14,6 +14,7 @@ namespace CharityWork.Core.Repository {
 		void DeleteLogin(int id);
 		Task<IEnumerable<UserLogin>> AllLogin();
 		Task<UserLogin> GetLogin(int id);
+		Task<UserAccount> Auth(UserLogin userLogin);
 
 	}
 }

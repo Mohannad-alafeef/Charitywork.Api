@@ -12,6 +12,6 @@ namespace CharityWork.Core.Repository
         public Task<IEnumerable<IssuesReport>> GetAllIssues();
         public void CreateIssue(IssuesReport issuesReport);
         public IssuesReport GetIssueById(int id);
-        public void NumberOfIssues();
+        public Task<int> NumberOfIssues();
     }
 }

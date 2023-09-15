@@ -1,9 +1,12 @@
 ﻿using CharityWork.Core.Models;
 using CharityWork.Core.Repository;
 using CharityWork.Core.Services;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +21,37 @@ namespace CharityWork.Infra.Services {
 
 		public Task<IEnumerable<UserLogin>> AllLogin() {
 			return _loginRepository.AllLogin();
+		}
+
+		public async Task<string?> Auth(UserLogin userLogin) {
+			var result = await _loginRepository.Auth(userLogin);
+			if (result == null) {
+				return null;
+			}
+			else {
+				var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MohannadAlafeefSuperSecretKey@345"));
+				var signingCredential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+				var claims = new List<Claim> {
+					new Claim("userName",result.Login.UserName),
+					new Claim("userId",result.UserId.ToString(),ClaimValueTypes.Integer64),
+					new Claim("firstName",result.FirstName),
+					new Claim("lastName",result.LastName),
+					new Claim("address",result.Address),
+					new Claim("age",result.Age.ToString(),ClaimValueTypes.Integer64),
+					new Claim("email",result.Email),
+					new Claim("gender",result.Gender),
+					new Claim("phone",result.Phone),
+					new Claim("roleId",result.Login.RoleId.ToString(),ClaimValueTypes.Integer64),
+					new Claim("loginDate",result.LoginDate.ToString(),ClaimValueTypes.DateTime),
+					
+				};
+				var tokenOptions = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddHours(1), signingCredentials: signingCredential);
+				var token = new JwtSecurityTokenHandler();
+
+
+				return token.WriteToken(tokenOptions);
+			}
+			
 		}
 
 		public void CreateLogin(UserLogin login) {

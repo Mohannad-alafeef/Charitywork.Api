@@ -34,14 +34,26 @@ namespace CharityWork.Api.Controllers {
 
 		[HttpGet]
         [Route("GetLoginById/{id}")]
-        public Task<UserLogin> GetLogin(int id) {
-			return _loginService.GetLogin(id);
+        public async Task<IActionResult> GetLogin(int id) {
+			var login = await _loginService.GetLogin(id);
+			if (login == null) {
+				return NoContent();
+			}
+			return Ok(login);
 		}
 		[HttpPost]
         [Route("UpdateLogin")]
         public void UpdateLogin(UserLogin login) {
 			_loginService.UpdateLogin(login);
 
+		}
+		[HttpPost("Auth")]
+		public async Task<IActionResult> Auth(UserLogin userLogin) {
+			var auth = await _loginService.Auth(userLogin);
+			if (auth == null) {
+				return NotFound();
+			}
+			return Ok(auth);
 		}
 	}
 }

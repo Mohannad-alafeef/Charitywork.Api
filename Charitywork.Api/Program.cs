@@ -4,8 +4,28 @@ using CharityWork.Core.Services;
 using CharityWork.Infra.Common;
 using CharityWork.Infra.Repository;
 using CharityWork.Infra.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options => {
+	options.AddPolicy("policy", builder => {
+		builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+	});
+});
+builder.Services.AddAuthentication(opt => {
+	opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options => {
+	options.TokenValidationParameters = new TokenValidationParameters {
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CharityWorkSuperSecretKey@345"))
+	};
+});
 
 // Add services to the container.
 
@@ -56,10 +76,11 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors("policy");
 
 app.Run();
 

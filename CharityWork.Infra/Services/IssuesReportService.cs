@@ -22,7 +22,7 @@ namespace CharityWork.Infra.Services
         public Task<IEnumerable<IssuesReport>> GetAllIssues() {return _issuesReportRepository.GetAllIssues();  }
         public void CreateIssue(IssuesReport issuesReport) { _issuesReportRepository.CreateIssue(issuesReport); }
         public IssuesReport GetIssueById(int id) { return _issuesReportRepository.GetIssueById(id); }
-        public void NumberOfIssues() {  _issuesReportRepository.NumberOfIssues(); }
+        public Task<int> NumberOfIssues() { return  _issuesReportRepository.NumberOfIssues(); }
 
     }
 }
