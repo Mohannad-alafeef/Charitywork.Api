@@ -25,6 +25,23 @@ namespace CharityWork.Infra.Repository {
 			return _connection.QueryAsync<UserLogin>("user_login_package.get_all_user_login", commandType:CommandType.StoredProcedure);
 		}
 
+		public async Task<UserAccount> Auth(UserLogin userLogin) {
+			var parm = new DynamicParameters();
+			parm.Add("userName", userLogin.UserName, DbType.String, ParameterDirection.Input);
+			parm.Add("pass", userLogin.Password, DbType.String, ParameterDirection.Input);
+			var result = await _connection.QueryAsync<UserAccount,UserLogin, UserAccount>("user_login_package.auth",
+				(account, login) => {
+					account.Login = login;
+					return account;
+				},
+				parm,
+				splitOn: "loginId",
+				commandType: CommandType.StoredProcedure);
+
+			return result.SingleOrDefault();
+
+		}
+
 		public void CreateLogin(UserLogin login) {
 			var parm = new DynamicParameters();
 			parm.Add("name",login.UserName, DbType.String, ParameterDirection.Input);
@@ -44,7 +61,7 @@ namespace CharityWork.Infra.Repository {
 		public Task<UserLogin> GetLogin(int id) {
 			var parm = new DynamicParameters();
 			parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
-			return _connection.QuerySingleAsync<UserLogin>("user_login_package.get_by_id",parm, commandType: CommandType.StoredProcedure);
+			return _connection.QuerySingleOrDefaultAsync<UserLogin>("user_login_package.get_by_id",parm, commandType: CommandType.StoredProcedure);
 		}
 
 		public void UpdateLogin(UserLogin login) {

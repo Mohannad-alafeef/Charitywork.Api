@@ -42,9 +42,9 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("NumberOfIssues")]
-        public void NumberOfIssues()
+        public Task<int> NumberOfIssues()
         {
-           _issuesReportService.NumberOfIssues();
+          return _issuesReportService.NumberOfIssues();
         }
 
     }
