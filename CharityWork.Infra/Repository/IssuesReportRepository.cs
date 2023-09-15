@@ -46,10 +46,10 @@ namespace CharityWork.Infra.Repository
         }
 
         //needs a double check 
-        public Task<IEnumerable<IssuesReport>> NumberOfIssues()
+        public void NumberOfIssues()
         {
            
-           return _connection.QueryAsync<IssuesReport>("Issues_report_package.number_of_Issues", commandType: CommandType.StoredProcedure);
+            _connection.QueryAsync<IssuesReport>("Issues_report_package.number_of_Issues", commandType: CommandType.StoredProcedure);
         }
 
 
