@@ -71,7 +71,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("p_Visa_Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<VisaCard>("visa_card_package.GetVisaById", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<VisaCard>("visa_card_package.GetVisaById", parm, commandType: CommandType.StoredProcedure);
 
         }
     }

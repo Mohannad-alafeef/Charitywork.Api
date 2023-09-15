@@ -22,7 +22,7 @@ namespace CharityWork.Api.Controllers
         {
             _visaCardService.createVisaCard(visaCard);
         }
-        [HttpPost("update")]
+        [HttpPut]
         public void updateVisaCard(VisaCard visaCard)
         {
             _visaCardService.updateVisaCard(visaCard);
@@ -32,12 +32,12 @@ namespace CharityWork.Api.Controllers
         {
             _visaCardService.deleteVisaCard(id);
         }
-        [HttpGet("GetAll")]
+        [HttpGet]
         public Task<IEnumerable<VisaCard>> allVisaCard()
         {
             return _visaCardService.allVisaCard();
         }
-        [HttpGet("GetById/{id}")]
+        [HttpGet("{id}")]
         public VisaCard getVisaCard(int id)
         {
             return _visaCardService.getVisaCard(id);
