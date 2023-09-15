@@ -28,11 +28,15 @@ namespace CharityWork.Api.Controllers {
 		[HttpGet]
         [Route("GetRoleById/{id}")]
 
-        public Task<Role> GetRoleById(int id) {
-
-			return _roleService.GetRoleById(id);
+        public async Task<IActionResult> GetRoleById(int id) {
+			var role = await _roleService.GetRoleById(id);
+			if (role == null) {
+				return NotFound();
+			}else
+				return Ok(role);
+			
 		}
-		[HttpPost]
+		[HttpPut]
         [Route("UpdateRole")]
         public void UpdateRole(Role role) {
 			_roleService.UpdateRole(role);

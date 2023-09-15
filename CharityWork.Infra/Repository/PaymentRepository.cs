@@ -41,7 +41,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Payment>("payment_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<Payment>("payment_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
         }
         public Task<IEnumerable<Payment>> getPaymentByType(int type)
         {

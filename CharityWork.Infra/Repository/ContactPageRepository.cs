@@ -40,7 +40,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("p_Contact_Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<ContactUsPage>("Contact_Us_Page_Package.GetContactPAGEBYID", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<ContactUsPage>("Contact_Us_Page_Package.GetContactPAGEBYID", parm, commandType: CommandType.StoredProcedure);
 
         }
         public void updateContactPage(ContactUsPage contactUsPage)

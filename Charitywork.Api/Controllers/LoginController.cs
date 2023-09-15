@@ -41,7 +41,7 @@ namespace CharityWork.Api.Controllers {
 			}
 			return Ok(login);
 		}
-		[HttpPost]
+		[HttpPut]
         [Route("UpdateLogin")]
         public void UpdateLogin(UserLogin login) {
 			_loginService.UpdateLogin(login);

@@ -53,7 +53,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Testimonial>("testimonial_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<Testimonial>("testimonial_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
         }
 
         public void UpdateTestimonial(Testimonial testimonial)

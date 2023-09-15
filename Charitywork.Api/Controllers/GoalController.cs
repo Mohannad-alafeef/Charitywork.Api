@@ -20,7 +20,7 @@ namespace CharityWork.Api.Controllers
         {
             _GoalService.createGoal(goal);
         }
-        [HttpPost("update")]
+        [HttpPut("update")]
         public void updateGoal(Goal goal)
         {
             _GoalService.updateGoal(goal);
@@ -36,9 +36,14 @@ namespace CharityWork.Api.Controllers
             return _GoalService.allChartyGoals(id);
         }
         [HttpGet("getGoalById/{id}")]
-        public Goal getGoal(int id)
+        public IActionResult getGoal(int id)
         {
-            return _GoalService.getGoal(id);
+            var goal = _GoalService.getGoal(id);
+            if (goal == null) {
+                return NotFound();
+            }else
+                return Ok(goal);
+            
         }
     }
 }

@@ -36,7 +36,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("p_About_Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<AboutUsPage>("About_Us_Page_Package.GetAboutPAGEBYID", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<AboutUsPage>("About_Us_Page_Package.GetAboutPAGEBYID", parm, commandType: CommandType.StoredProcedure);
 
         }
         public void updateAboutPage(AboutUsPage aboutUsPage)

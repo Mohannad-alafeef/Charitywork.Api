@@ -35,9 +35,14 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("GetIssueById/{id}")]
-        public IssuesReport GetIssueById(int id)
+        public IActionResult GetIssueById(int id)
         {
-            return _issuesReportService.GetIssueById(id);
+            var issue = _issuesReportService.GetIssueById(id);
+            if (issue == null) {
+                return NotFound();
+            }else
+                return Ok(issue);
+            
         }
 
         [HttpGet]

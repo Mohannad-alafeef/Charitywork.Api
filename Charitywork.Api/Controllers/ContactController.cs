@@ -13,7 +13,7 @@ namespace CharityWork.Api.Controllers {
 			_contactService = contactService;
 		}
 
-		[HttpPut]
+		[HttpPut("updateStatus")]
 		public void ChangeStatus(Contact contact) {
 			_contactService.ChangeStatus(contact);
 		}

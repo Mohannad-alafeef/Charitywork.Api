@@ -50,7 +50,7 @@ namespace CharityWork.Infra.Repository {
 		public async Task<UserAccount> GetById(int id) {
 			var parm = new DynamicParameters();
 			parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
-			return await _connection.QuerySingleAsync<UserAccount>("user_account_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
+			return await _connection.QuerySingleOrDefaultAsync<UserAccount>("user_account_package.get_by_id", parm, commandType: CommandType.StoredProcedure);
 		}
 
 		public async void UpdateAccount(UserAccount userAccount) {

@@ -73,7 +73,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Charity>("Charity_Package.GetcharityById", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<Charity>("Charity_Package.GetcharityById", parm, commandType: CommandType.StoredProcedure);
 
         }
         public Task<IEnumerable<Charity>> SearchByName(string name)

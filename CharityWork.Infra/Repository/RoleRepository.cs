@@ -37,7 +37,7 @@ namespace CharityWork.Infra.Repository {
 		public async Task<Role> GetRoleById(int id) {
 			var parm = new DynamicParameters();
 			parm.Add("id", id, DbType.String, ParameterDirection.Input);
-			return await _connection.QuerySingleAsync<Role>("Role_Package.get_by_id", parm, commandType: CommandType.StoredProcedure);
+			return await _connection.QuerySingleOrDefaultAsync<Role>("Role_Package.get_by_id", parm, commandType: CommandType.StoredProcedure);
 		}
 		//Update
 		public async void UpdateRole(Role role) {
