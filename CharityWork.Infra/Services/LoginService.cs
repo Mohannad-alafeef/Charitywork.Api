@@ -29,7 +29,7 @@ namespace CharityWork.Infra.Services {
 				return null;
 			}
 			else {
-				var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MohannadAlafeefSuperSecretKey@345"));
+				var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CharityWorkSuperSecretKey@345"));
 				var signingCredential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 				var claims = new List<Claim> {
 					new Claim("userName",result.Login.UserName),
