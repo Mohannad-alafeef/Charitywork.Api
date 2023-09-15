@@ -36,12 +36,12 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("p_Testimonial_Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<TestimonialPage>("Testimonial_Page_Package.GetTestimonialPAGEBYID", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<TestimonialPage>("Testimonial_Page_Package.GetTestimonialPAGEBYID", parm, commandType: CommandType.StoredProcedure);
         }
         public void updateTestimonialPage(TestimonialPage testimonialPage)
         {
             var parm = new DynamicParameters();
-            parm.Add("p_Testimonial_Id", testimonialPage.HomeId, DbType.Int64, ParameterDirection.Input);
+            parm.Add("p_Testimonial_Id", testimonialPage.TestimonialId, DbType.Int64, ParameterDirection.Input);
             parm.Add("p_Title", testimonialPage.Title, DbType.String, ParameterDirection.Input);
             parm.Add("p_Image_Path", testimonialPage.ImagePath, DbType.String, ParameterDirection.Input);
             parm.Add("p_Text", testimonialPage.Text, DbType.String, ParameterDirection.Input);

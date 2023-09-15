@@ -26,7 +26,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("p_Home_Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<HomePage>("Home_Page_Package.GetHOMEPAGEBYID", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<HomePage>("Home_Page_Package.GetHOMEPAGEBYID", parm, commandType: CommandType.StoredProcedure);
         }
 
 

@@ -42,7 +42,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<IssuesReport>("Issues_report_package. get_by_id", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<IssuesReport>("Issues_report_package. get_by_id", parm, commandType: CommandType.StoredProcedure);
         }
 
         //needs a double check 

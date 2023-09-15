@@ -38,12 +38,18 @@ namespace CharityWork.Api.Controllers
 
         [HttpGet]
         [Route("GetCategoryId/{id}")]
-        public Category GetCategoryId(int id)
+        public IActionResult GetCategoryId(int id)
         {
-            return _categoryService.GetCategoryId(id);
+            var category = _categoryService.GetCategoryId(id);
+            if (category == null) {
+                return NotFound();
+            }
+            else
+                return Ok(category);
+            
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateCategory")]
         public void UpdateCategory(Category category)
         {

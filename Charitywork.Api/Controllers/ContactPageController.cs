@@ -21,9 +21,14 @@ namespace CharityWork.Api.Controllers
             _contactPageService.createContactPage(contactUsPage);
         }
         [HttpGet("{id}")]
-        public ContactUsPage getContact(int id)
+        public IActionResult getContact(int id)
         {
-            return _contactPageService.getContact(id);
+            var contact = _contactPageService.getContact(id);
+            if (contact == null) {
+                return NotFound();
+            }else
+                return Ok(contact);
+			
         }
         [HttpPut("Update")]
         public void updateContactPage(ContactUsPage contactUsPage)

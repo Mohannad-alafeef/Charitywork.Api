@@ -21,9 +21,14 @@ namespace CharityWork.Api.Controllers
             _paymentService.createPayment(payment);
         }
         [HttpGet("getById/{id}")]
-        public Payment getPaymentById(int id)
+        public IActionResult getPaymentById(int id)
         {
-            return _paymentService.getPaymentById(id);
+            var payment = _paymentService.getPaymentById(id);
+            if (payment == null) {
+                return NotFound();
+            }else
+                return Ok(payment);
+           
         }
         [HttpGet("getByType/{type}")]
         public Task<IEnumerable<Payment>> getPaymentByType(int type)

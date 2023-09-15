@@ -37,7 +37,7 @@ namespace CharityWork.Api.Controllers
         {
             _charityService.createCharity(charity);
         }
-        [HttpPost("Update")]
+        [HttpPut("Update")]
         public void updateCharity(Charity charity)
         {
             _charityService.updateCharity(charity);
@@ -53,9 +53,14 @@ namespace CharityWork.Api.Controllers
             return _charityService.allCharity();
         }
         [HttpGet("getByid/{id}")]
-        public Charity getCharity(int id)
+        public IActionResult getCharity(int id)
         {
-            return _charityService.getCharity(id);
+            var charity = _charityService.getCharity(id);
+            if (charity == null)
+                return NotFound();
+            else
+                return Ok(charity);
+           
         }
         [HttpGet("getByname/{name}")]
         public Task<IEnumerable<Charity>> SearchByName(string name)

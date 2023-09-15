@@ -50,7 +50,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Category>("Category_Package.GetCategoryId", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<Category>("Category_Package.GetCategoryId", parm, commandType: CommandType.StoredProcedure);
         }
 
         public void UpdateCategory(Category category)

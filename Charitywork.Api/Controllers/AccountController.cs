@@ -42,8 +42,12 @@ namespace CharityWork.Api.Controllers {
 			return _accountService.GetAll();
 		}
 		[HttpGet("{id}")]
-		public Task<UserAccount> GetById(int id) {
-			return _accountService.GetById(id);
+		public async Task<IActionResult> GetById(int id) {
+			var account = await _accountService.GetById(id);
+			if (account == null) {
+				return NotFound();
+			}
+			return Ok(account);
 		}
 		[HttpPost("update")]
 		public void UpdateAccount(UserAccount userAccount) {

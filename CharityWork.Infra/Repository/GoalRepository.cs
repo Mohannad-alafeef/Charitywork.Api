@@ -63,7 +63,7 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("Id", id, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryFirstOrDefault<Goal>("Goals_Package.GetGoalById", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QuerySingleOrDefault<Goal>("Goals_Package.GetGoalById", parm, commandType: CommandType.StoredProcedure);
 
         }
     }

@@ -28,9 +28,14 @@ namespace CharityWork.Api.Controllers
             _homePageServices.deleteHomePage(id);
         }
         [HttpGet("{id}")]
-        public HomePage getHome(int id)
+        public IActionResult getHome(int id)
         {
-            return _homePageServices.getHome(id);
+            var home = _homePageServices.getHome(id);
+            if (home == null) {
+                return NotFound();
+            }else
+                return Ok(home);
+            
         }
         [HttpPut("Update")]
         public void updateHomePage(HomePage homePage)

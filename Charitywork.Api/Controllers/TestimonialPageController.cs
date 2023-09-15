@@ -21,9 +21,14 @@ namespace CharityWork.Api.Controllers
             _testimonialPageService.createTestimonialPage(testimonialPage);
         }
         [HttpGet("{id}")]
-        public TestimonialPage getTestimonialpage(int id)
+        public IActionResult getTestimonialpage(int id)
         {
-            return _testimonialPageService.getTestimonialpage(id);
+            var testimonial = _testimonialPageService.getTestimonialpage(id);
+            if (testimonial == null) {
+                return NotFound();
+            }
+            else
+                return Ok(testimonial); 
         }
         [HttpPut("Update")]
         public void updateAboutTestimonialPage(TestimonialPage testimonialPage)
