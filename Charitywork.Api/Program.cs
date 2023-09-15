@@ -25,7 +25,7 @@ builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
 builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
 builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
 builder.Services.AddScoped<ITestimonialPageRepository,TestimonialPageRepository>();
-
+builder.Services.AddScoped<IIssuesReportRepository, IssuesReportRepository>();
 //services
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<ILoginService,LoginService>();
@@ -36,7 +36,7 @@ builder.Services.AddScoped<IHomePageService, HomePageService>();
 builder.Services.AddScoped<IContactPageService, ContactPageService>();
 builder.Services.AddScoped<IAboutPageService, AboutPageService>();
 builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
-
+builder.Services.AddScoped<IIssuesReportService, IssuesReportService>();
 
 var app = builder.Build();
 
