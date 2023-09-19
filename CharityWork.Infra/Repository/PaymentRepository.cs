@@ -47,7 +47,15 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("paymentType", type, DbType.Int64, ParameterDirection.Input);
-            return _connection.QueryAsync<Payment>("payment_package.get_by_type", parm, commandType: CommandType.StoredProcedure);
+            return _connection.QueryAsync<Payment,Charity,UserAccount,Payment>("payment_package.get_by_type",
+                (pa, ch, ua) => {
+                    pa.User = ua;
+                    pa.Charity = ch;
+                    return pa;
+                }
+                ,
+                splitOn:"charityId,userId",
+                param: parm, commandType: CommandType.StoredProcedure);
         }
         public List<PaymentOfPeriod> getPaymentByPeriod(DatesType dateSearch)
         {

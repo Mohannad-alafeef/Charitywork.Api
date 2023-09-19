@@ -33,7 +33,7 @@ namespace CharityWork.Infra.Repository {
 			parm.Add("email", contact.SenderEmail, DbType.String, ParameterDirection.Input);
 			parm.Add("subject", contact.ContactSubject, DbType.String, ParameterDirection.Input);
 			parm.Add("content", contact.ContactContent, DbType.String, ParameterDirection.Input);
-			parm.Add("Status", contact.ContactStatus, DbType.Int64, ParameterDirection.Input);
+			parm.Add("Status", Const.Unread, DbType.Int64, ParameterDirection.Input);
 			await _connection.ExecuteAsync("Contact_package.create_contact", parm, commandType: CommandType.StoredProcedure);
 		}
 

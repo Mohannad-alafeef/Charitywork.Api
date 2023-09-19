@@ -26,7 +26,13 @@ namespace CharityWork.Infra.Repository
         public Task<IEnumerable<Testimonial>> GetAllTestimonial()
         {
 
-            return _connection.QueryAsync<Testimonial>("testimonial_package.get_all_testimonial", commandType: CommandType.StoredProcedure);
+            return _connection.QueryAsync<Testimonial,UserAccount,Testimonial>("testimonial_package.get_all_testimonial"
+                , (testimonial, account) => {
+                    testimonial.User = account;
+                    return testimonial;
+                },
+                splitOn:"userId"
+                , commandType: CommandType.StoredProcedure);
         }
 
         public void CreateTestimonial(Testimonial testimonial)
@@ -35,7 +41,7 @@ namespace CharityWork.Infra.Repository
             parm.Add("testContent", testimonial.Content, DbType.String, ParameterDirection.Input);
             parm.Add("testRate", testimonial.Rate, DbType.Int64, ParameterDirection.Input);
             parm.Add("testDate", testimonial.TestimonialDate, DbType.Date, ParameterDirection.Input);
-            parm.Add("isAccepted", testimonial.IsAccepted, DbType.Int64, ParameterDirection.Input);
+            parm.Add("isAccepted", Const.NeedReview, DbType.Int64, ParameterDirection.Input);
             parm.Add("userId", testimonial.UserId, DbType.Int64, ParameterDirection.Input);
 
             _connection.ExecuteAsync("testimonial_package.create_testimonial", parm, commandType: CommandType.StoredProcedure);
