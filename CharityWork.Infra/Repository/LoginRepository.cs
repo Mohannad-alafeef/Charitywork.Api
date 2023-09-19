@@ -47,7 +47,7 @@ namespace CharityWork.Infra.Repository {
 			parm.Add("name",login.UserName, DbType.String, ParameterDirection.Input);
 			parm.Add("pass", login.Password, DbType.String, ParameterDirection.Input);
 			parm.Add("emailAddress", login.Email, DbType.String, ParameterDirection.Input);
-			parm.Add("roleId", login.RoleId, DbType.Int64, ParameterDirection.Input);
+			parm.Add("roleId", Const.User, DbType.Int64, ParameterDirection.Input);
 			_connection.ExecuteAsync("user_login_package.create_user_login", parm,commandType: CommandType.StoredProcedure);
 		}
 
