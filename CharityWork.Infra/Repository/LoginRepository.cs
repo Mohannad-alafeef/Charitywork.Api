@@ -42,13 +42,15 @@ namespace CharityWork.Infra.Repository {
 
 		}
 
-		public void CreateLogin(UserLogin login) {
+		public async Task<int> CreateLogin(UserLogin login) {
 			var parm = new DynamicParameters();
 			parm.Add("name",login.UserName, DbType.String, ParameterDirection.Input);
 			parm.Add("pass", login.Password, DbType.String, ParameterDirection.Input);
 			parm.Add("emailAddress", login.Email, DbType.String, ParameterDirection.Input);
 			parm.Add("roleId", Const.User, DbType.Int64, ParameterDirection.Input);
-			_connection.ExecuteAsync("user_login_package.create_user_login", parm,commandType: CommandType.StoredProcedure);
+			parm.Add("loginId", Const.User, DbType.Int32, ParameterDirection.Output);
+			await _connection.ExecuteAsync("user_login_package.create_user_login", parm,commandType: CommandType.StoredProcedure);
+			return parm.Get<int>("loginId");
 		}
 
 		public void DeleteLogin(int id) {
