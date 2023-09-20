@@ -12,26 +12,17 @@ namespace CharityWork.Api.Controllers {
 		private readonly IAccountService _accountService;
 
 		public AccountController(IAccountService accountService) {
-			
+
 			_accountService = accountService;
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateAccount([FromForm]UserAccount userAccount) {
-			
-			var file = Request.Form.Files[0];
-			var extention = Path.GetExtension(file.FileName);
-			var fileName = Guid.NewGuid().ToString() + extention;
-			var fullPath = Path.Combine("Images", fileName);
+		public async Task<IActionResult> CreateAccount(UserAccount userAccount) {
 
-			using (var stream = new FileStream(fullPath, FileMode.Create)) {
-				await file.CopyToAsync(stream);
-			}
-			
-			userAccount.ImagePath = fullPath;
 			_accountService.CreateAccount(userAccount);
 			return Ok(userAccount);
 		}
+		
 		[HttpDelete("{id}")]
 		public void DeleteAccount(int id) {
 			_accountService.DeleteAccount(id);
@@ -53,9 +44,26 @@ namespace CharityWork.Api.Controllers {
 		public void UpdateAccount(UserAccount userAccount) {
 			_accountService.UpdateAccount(userAccount);
 		}
-		
-		
+		[HttpPost("UploadImage")]
+		public async Task<UserAccount> UploadImage() {
+			var userAccount = new UserAccount();
+			var file = Request.Form.Files[0];
 
-		
+
+			var extention = Path.GetExtension(file.FileName);
+			var fileName = Guid.NewGuid().ToString() + extention;
+			var fullPath = Path.Combine("E:\\Anguler\\final project\\Charitywork\\src\\assets\\Images", fileName);
+
+			using (var stream = new FileStream(fullPath, FileMode.Create)) {
+				await file.CopyToAsync(stream);
+			}   
+
+			userAccount.ImagePath = fullPath;
+			return userAccount;
+
+		}
+
+
+
 	}
 }
