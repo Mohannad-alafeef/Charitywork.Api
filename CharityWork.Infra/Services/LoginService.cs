@@ -54,8 +54,8 @@ namespace CharityWork.Infra.Services {
 			
 		}
 
-		public void CreateLogin(UserLogin login) {
-			_loginRepository.CreateLogin(login);
+		public Task<int> CreateLogin(UserLogin login) {
+			return _loginRepository.CreateLogin(login);
 		}
 
 		public void DeleteLogin(int id) {

@@ -22,8 +22,8 @@ namespace CharityWork.Api.Controllers {
 		}
 		[HttpPost]
         [Route("CreateLogin")]
-        public void CreateLogin(UserLogin login) {
-			_loginService.CreateLogin(login);
+        public Task<int> CreateLogin(UserLogin login) {
+			return _loginService.CreateLogin(login);
 		}
 
 		[HttpDelete]

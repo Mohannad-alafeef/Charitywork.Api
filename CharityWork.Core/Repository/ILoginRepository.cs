@@ -9,7 +9,7 @@ namespace CharityWork.Core.Repository {
 	public interface ILoginRepository {
 
 
-		void CreateLogin(UserLogin login);
+		Task<int> CreateLogin(UserLogin login);
 		void UpdateLogin(UserLogin login);
 		void DeleteLogin(int id);
 		Task<IEnumerable<UserLogin>> AllLogin();
