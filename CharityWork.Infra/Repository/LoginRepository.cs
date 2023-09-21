@@ -27,18 +27,23 @@ namespace CharityWork.Infra.Repository {
 
 		public async Task<UserAccount> Auth(UserLogin userLogin) {
 			var parm = new DynamicParameters();
-			parm.Add("userName", userLogin.UserName, DbType.String, ParameterDirection.Input);
+			parm.Add("emaill", userLogin.Email, DbType.String, ParameterDirection.Input);
 			parm.Add("pass", userLogin.Password, DbType.String, ParameterDirection.Input);
-			var result = await _connection.QueryAsync<UserAccount,UserLogin, UserAccount>("user_login_package.auth",
-				(account, login) => {
-					account.Login = login;
+
+			var result = await _connection.QueryAsync<UserAccount, UserLogin, VisaCard, UserAccount>(
+				"user_login_package.auth",
+				(account,  login, visaCard) =>
+				{
+                    account.VisaCard = visaCard;
+                    account.Login = login;
+					 // Assuming UserAccount has a property for VisaCard
 					return account;
 				},
 				parm,
-				splitOn: "loginId",
+				splitOn: "loginId,visaId",
 				commandType: CommandType.StoredProcedure);
 
-			return result.SingleOrDefault();
+			return result.FirstOrDefault();
 
 		}
 
