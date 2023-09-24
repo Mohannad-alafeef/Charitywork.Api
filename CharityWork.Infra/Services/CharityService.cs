@@ -17,7 +17,10 @@ namespace CharityWork.Infra.Services
         {
             _charityRepository = charityRepository;
         }
-
+        public Task<IEnumerable<Charity>> allstatusCharity()
+        {
+           return _charityRepository.allstatusCharity();
+        }
        public void createCharity(Charity charity)
         {
             _charityRepository.createCharity(charity);

@@ -13,6 +13,7 @@ namespace CharityWork.Core.Services
         void updateCharity(Charity charity);
         void deleteCharity(int id);
         Task<IEnumerable<Charity>> allCharity();
+        Task<IEnumerable<Charity>> allstatusCharity();
         Charity getCharity(int id);
         Task<IEnumerable<Charity>> SearchByName(string name);
         Task<IEnumerable<Charity>> SearchByDate(DateSearch dateSearch);
