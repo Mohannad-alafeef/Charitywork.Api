@@ -22,7 +22,20 @@ namespace CharityWork.Infra.Repository
             _dbContext = dbContext;
             _connection = dbContext.Connection;
         }
-
+        public async Task<IEnumerable<Charity>> allstatusCharity()
+        {
+            // return _connection.QueryAsync<Charity>("Charity_Package.GetAllStatusCharitys", commandType: CommandType.StoredProcedure);
+            var result = await _connection.QueryAsync<Charity, Category,UserAccount, Charity>("Charity_Package.GetAllStatusCharitys",
+                (charity, cat,user) => {
+                    charity.Category=cat;
+                    charity.User = user;
+                    return charity;
+                },
+                splitOn: "CategoryId,userId",
+                commandType: CommandType.StoredProcedure);
+           
+            return result;
+        }
         public void createCharity(Charity charity)
         {
             var parm = new DynamicParameters();

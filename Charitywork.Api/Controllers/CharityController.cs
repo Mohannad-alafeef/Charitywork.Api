@@ -31,6 +31,11 @@ namespace CharityWork.Api.Controllers
             item.ImagePath = fileName;
             return item;
         }
+        [HttpGet("getAll")]
+        public Task<IEnumerable<Charity>> allstatusCharity()
+        {
+            return _charityService.allstatusCharity();
+        }
         [HttpPost]
         [Route("create")]
         public void createCharity(Charity charity)
