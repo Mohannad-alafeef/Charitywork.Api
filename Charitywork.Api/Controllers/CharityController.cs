@@ -22,7 +22,7 @@ namespace CharityWork.Api.Controllers
         {
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-            var fullPath = Path.Combine("Images", fileName);
+            var fullPath = Path.Combine("C:\\Users\\USER\\Desktop\\training\\angular\\New folder\\Charitywork\\src\\assets\\Images", fileName);
             using (var stream = new FileStream(fullPath, FileMode.Create))
             {
                 file.CopyTo(stream);
@@ -38,9 +38,9 @@ namespace CharityWork.Api.Controllers
         }
         [HttpPost]
         [Route("create")]
-        public void createCharity(Charity charity)
+        public Task<int> createCharity(Charity charity)
         {
-            _charityService.createCharity(charity);
+            return _charityService.createCharity(charity);
         }
         [HttpPut("Update")]
         public void updateCharity(Charity charity)

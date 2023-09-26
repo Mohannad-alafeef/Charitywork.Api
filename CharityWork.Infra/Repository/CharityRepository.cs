@@ -36,7 +36,7 @@ namespace CharityWork.Infra.Repository
            
             return result;
         }
-        public void createCharity(Charity charity)
+        public async Task<int> createCharity(Charity charity)
         {
             var parm = new DynamicParameters();
             parm.Add("ch_Longitude", charity.Longitude, DbType.String, ParameterDirection.Input);
@@ -49,8 +49,10 @@ namespace CharityWork.Infra.Repository
             parm.Add("name", charity.CharityName, DbType.String, ParameterDirection.Input);
             parm.Add("ch_Is_Accepted", Const.NeedReview, DbType.Int64, ParameterDirection.Input);
             parm.Add("donationGoal", charity.DonationGoal, DbType.Int64, ParameterDirection.Input);
+            parm.Add("charityId", 0, DbType.Int32, ParameterDirection.Output);
 
-            _connection.ExecuteAsync("Charity_Package.CreateCharity", parm, commandType: CommandType.StoredProcedure);
+            await _connection.ExecuteAsync("Charity_Package.CreateCharity", parm, commandType: CommandType.StoredProcedure);
+            return parm.Get<int>("charityId");
         }
         public void updateCharity(Charity charity)
         {

@@ -9,7 +9,7 @@ namespace CharityWork.Core.Repository
 {
     public interface ICharityRepository
     {
-        void createCharity(Charity charity);
+        Task<int> createCharity(Charity charity);
         void updateCharity(Charity charity);
         void deleteCharity(int id);
         Task<IEnumerable<Charity>> allCharity();

@@ -21,9 +21,9 @@ namespace CharityWork.Infra.Services
         {
            return _charityRepository.allstatusCharity();
         }
-       public void createCharity(Charity charity)
+       public Task<int> createCharity(Charity charity)
         {
-            _charityRepository.createCharity(charity);
+            return _charityRepository.createCharity(charity);
         }
         public void updateCharity(Charity charity)
         {
