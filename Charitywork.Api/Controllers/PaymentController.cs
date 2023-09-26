@@ -15,6 +15,10 @@ namespace CharityWork.Api.Controllers
         {
             _paymentService = paymentService;
         }
+        [HttpGet]
+        public Task<IEnumerable<Payment>> GetAll() {
+            return _paymentService.GetAll();
+        }
         [HttpPost]
         public void createPayment(Payment payment)
         {
