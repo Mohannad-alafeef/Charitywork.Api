@@ -77,5 +77,11 @@ namespace CharityWork.Infra.Repository
 
             return _connection.QueryAsync<Payment>("payment_package.get_by_charity", parm, commandType: CommandType.StoredProcedure);
         }
-    }
+
+		public async Task<IEnumerable<Payment>> GetAll() {
+			
+			return await _connection.QueryAsync<Payment>("payment_package.get_all_payment", commandType: CommandType.StoredProcedure);
+
+		}
+	}
 }

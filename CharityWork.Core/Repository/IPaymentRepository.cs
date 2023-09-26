@@ -15,5 +15,6 @@ namespace CharityWork.Core.Repository
         Task<IEnumerable<Payment> >getPaymentByType(int type);
         List<PaymentOfPeriod> getPaymentByPeriod(DatesType datesType);
         Task<IEnumerable<Payment>> getPaymentByCharity(int id);
+        Task<IEnumerable<Payment>> GetAll();
     }
 }

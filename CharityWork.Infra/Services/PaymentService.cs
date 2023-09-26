@@ -38,5 +38,9 @@ namespace CharityWork.Infra.Services
         {
             return _paymentRepository.getPaymentByCharity(id);
         }
-    }
+
+		public Task<IEnumerable<Payment>> GetAll() {
+			return _paymentRepository.GetAll();
+		}
+	}
 }
