@@ -26,11 +26,11 @@ namespace CharityWork.Api.Controllers {
 		}
 		[Route("update")]
 		[HttpPost]
-		public async Task<IActionResult> updateImage() {
+		public async Task<IActionResult> updateImage(string imagePath) {
 			try {
 				var file = Request.Form.Files[0];
-
-				using (var stream = new FileStream(rootPath, FileMode.Create)) {
+				var fullPath = Path.Combine(rootPath, imagePath);
+				using (var stream = new FileStream(fullPath, FileMode.Create)) {
 					await file.CopyToAsync(stream);
 				}
 				return Ok();
