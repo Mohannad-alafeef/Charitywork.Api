@@ -55,10 +55,13 @@ namespace CharityWork.Infra.Services {
 					new Claim("CardNumber", result.VisaCard?.CardNumber),
 					new Claim("cvv", result.VisaCard.Cvv?.ToString(), ClaimValueTypes.Integer64),
 					new Claim("balance", result.VisaCard.Balance?.ToString(), ClaimValueTypes.Integer64),
-					new Claim("expDate", result.VisaCard.ExpDate?.ToString(), ClaimValueTypes.DateTime)
+					new Claim("expDate", result.VisaCard.ExpDate?.ToString(), ClaimValueTypes.DateTime),
 
 
-				};
+                   new Claim("LoginId",result.LoginId.ToString(),ClaimValueTypes.Integer64),
+				   new Claim("password",result.Login.Password),
+
+                };
 				}
 				else
 				{
@@ -69,13 +72,17 @@ namespace CharityWork.Infra.Services {
 					new Claim("lastName",result.LastName),
 					new Claim("address",result.Address),
 					new Claim("age",result.Age.ToString(),ClaimValueTypes.Integer64),
-					new Claim("email",result.Email),
+                    new Claim("dateOfBirth",result.DateOfBirth.ToString(),ClaimValueTypes.Date),
+                    new Claim("email",result.Email),
 					new Claim("gender",result.Gender),
 					new Claim("phone",result.Phone),
 					new Claim("ImagePath",result.ImagePath),
 					new Claim("roleId",result.Login.RoleId.ToString(),ClaimValueTypes.Integer64),
 					new Claim("loginDate",result.LoginDate.ToString(),ClaimValueTypes.DateTime),
-					};
+
+                    new Claim("LoginId",result.LoginId.ToString(),ClaimValueTypes.Integer64),
+                    new Claim("password",result.Login.Password),
+                    };
                 }
 
                 var tokenOptions = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddHours(1), signingCredentials: signingCredential);
