@@ -11,7 +11,7 @@ namespace CharityWork.Core.Models
             IssuesReports = new HashSet<IssuesReport>();
             Payments = new HashSet<Payment>();
             Testimonials = new HashSet<Testimonial>();
-           VisaCards = new HashSet<VisaCard>();
+            VisaCards = new HashSet<VisaCard>();
         }
 
         public decimal UserId { get; set; }

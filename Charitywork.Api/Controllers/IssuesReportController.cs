@@ -52,5 +52,19 @@ namespace CharityWork.Api.Controllers
           return _issuesReportService.NumberOfIssues();
         }
 
+        [HttpDelete("Delete/{id}")]
+        public void DeleteContact(int id)
+        {
+            _issuesReportService.DeleteIssue(id);
+        }
+
+
+        [HttpPut("updateStatus")]
+        public void ChangeStatus(IssuesReport issuesReport)
+        {
+            _issuesReportService.ChangeStatus(issuesReport);
+
+        }
+
     }
 }

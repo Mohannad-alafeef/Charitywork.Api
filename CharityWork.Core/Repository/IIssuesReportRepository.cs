@@ -13,5 +13,7 @@ namespace CharityWork.Core.Repository
         public void CreateIssue(IssuesReport issuesReport);
         public IssuesReport GetIssueById(int id);
         public Task<int> NumberOfIssues();
+        public void DeleteIssue(int id);
+        public void ChangeStatus(IssuesReport issuesReport);
     }
 }
