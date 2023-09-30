@@ -32,7 +32,14 @@ namespace CharityWork.Core.Models
         public virtual DbSet<UserLogin> UserLogins { get; set; } = null!;
         public virtual DbSet<VisaCard> VisaCards { get; set; } = null!;
 
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseOracle("USER ID=c##finalproject;PASSWORD=123;DATA SOURCE=localhost:1521/xe");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,7 +49,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<AboutUsPage>(entity =>
             {
                 entity.HasKey(e => e.AboutId)
-                    .HasName("SYS_C008457");
+                    .HasName("SYS_C008470");
 
                 entity.ToTable("ABOUT_US_PAGE");
 
@@ -129,7 +136,7 @@ namespace CharityWork.Core.Models
                     .HasColumnName("IMAGE_PATH");
 
                 entity.Property(e => e.IsAccepted)
-                    .HasColumnType("NUMBER(38)")
+                    .HasColumnType("NUMBER")
                     .HasColumnName("IS_ACCEPTED");
 
                 entity.Property(e => e.Latitude)
@@ -197,7 +204,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<ContactUsPage>(entity =>
             {
                 entity.HasKey(e => e.ContactId)
-                    .HasName("SYS_C008460");
+                    .HasName("SYS_C008473");
 
                 entity.ToTable("CONTACT_US_PAGE");
 
@@ -270,7 +277,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<HomePage>(entity =>
             {
                 entity.HasKey(e => e.HomeId)
-                    .HasName("SYS_C008455");
+                    .HasName("SYS_C008468");
 
                 entity.ToTable("HOME_PAGE");
 
@@ -298,7 +305,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<IssuesReport>(entity =>
             {
                 entity.HasKey(e => e.ProblemId)
-                    .HasName("SYS_C008480");
+                    .HasName("SYS_C008457");
 
                 entity.ToTable("ISSUES_REPORT");
 
@@ -306,6 +313,10 @@ namespace CharityWork.Core.Models
                     .HasColumnType("NUMBER")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("PROBLEM_ID");
+
+                entity.Property(e => e.IssueStatus)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("ISSUE_STATUS");
 
                 entity.Property(e => e.Message)
                     .HasMaxLength(3000)
@@ -315,6 +326,11 @@ namespace CharityWork.Core.Models
                 entity.Property(e => e.ReportDate)
                     .HasColumnType("DATE")
                     .HasColumnName("REPORT_DATE");
+
+                entity.Property(e => e.Subject)
+                    .HasMaxLength(512)
+                    .IsUnicode(false)
+                    .HasColumnName("SUBJECT");
 
                 entity.Property(e => e.UserId)
                     .HasColumnType("NUMBER")
@@ -349,7 +365,7 @@ namespace CharityWork.Core.Models
                     .HasColumnName("PAYMENT_DATE");
 
                 entity.Property(e => e.PaymentType)
-                    .HasColumnType("NUMBER(38)")
+                    .HasColumnType("NUMBER")
                     .HasColumnName("PAYMENT_TYPE");
 
                 entity.Property(e => e.UserId)
@@ -399,7 +415,7 @@ namespace CharityWork.Core.Models
                     .HasColumnName("CONTENT");
 
                 entity.Property(e => e.IsAccepted)
-                    .HasColumnType("NUMBER(38)")
+                    .HasColumnType("NUMBER")
                     .HasColumnName("IS_ACCEPTED");
 
                 entity.Property(e => e.Rate)
@@ -424,7 +440,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<TestimonialPage>(entity =>
             {
                 entity.HasKey(e => e.TestimonialId)
-                    .HasName("SYS_C008463");
+                    .HasName("SYS_C008476");
 
                 entity.ToTable("TESTIMONIAL_PAGE");
 
@@ -462,7 +478,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<UserAccount>(entity =>
             {
                 entity.HasKey(e => e.UserId)
-                    .HasName("SYS_C008466");
+                    .HasName("SYS_C008443");
 
                 entity.ToTable("USER_ACCOUNT");
 
@@ -532,7 +548,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<UserLogin>(entity =>
             {
                 entity.HasKey(e => e.LoginId)
-                    .HasName("SYS_C008450");
+                    .HasName("SYS_C008440");
 
                 entity.ToTable("USER_LOGIN");
 
@@ -570,7 +586,7 @@ namespace CharityWork.Core.Models
             modelBuilder.Entity<VisaCard>(entity =>
             {
                 entity.HasKey(e => e.VisaId)
-                    .HasName("SYS_C008493");
+                    .HasName("SYS_C008482");
 
                 entity.ToTable("VISA_CARD");
 

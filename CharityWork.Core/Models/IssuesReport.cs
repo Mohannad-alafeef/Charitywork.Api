@@ -9,6 +9,8 @@ namespace CharityWork.Core.Models
         public DateTime? ReportDate { get; set; }
         public string? Message { get; set; }
         public decimal? UserId { get; set; }
+        public string? Subject { get; set; }
+        public decimal? IssueStatus { get; set; }
 
         public virtual UserAccount? User { get; set; }
     }

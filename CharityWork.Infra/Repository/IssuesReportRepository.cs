@@ -33,6 +33,8 @@ namespace CharityWork.Infra.Repository
         {
             var parm = new DynamicParameters();
             parm.Add("reportDate", issuesReport.ReportDate, DbType.Date, ParameterDirection.Input);
+            parm.Add("subject", issuesReport.Subject, DbType.String, ParameterDirection.Input);
+            parm.Add("status", issuesReport.IssueStatus, DbType.String, ParameterDirection.Input);
             parm.Add("msg", issuesReport.Message, DbType.String, ParameterDirection.Input);
             parm.Add("userId ", issuesReport.UserId, DbType.Int64, ParameterDirection.Input);
 
@@ -45,11 +47,25 @@ namespace CharityWork.Infra.Repository
             return _connection.QuerySingleOrDefault<IssuesReport>("Issues_report_package. get_by_id", parm, commandType: CommandType.StoredProcedure);
         }
 
-        //needs a double check 
         public async Task<int> NumberOfIssues()
         {
            
            return await _connection.QuerySingleAsync<int>("Issues_report_package.number_of_Issues", commandType: CommandType.StoredProcedure);
+        }
+
+        public async void DeleteIssue(int id)
+        {
+            var parm = new DynamicParameters();
+            parm.Add("id", id, DbType.Int64, ParameterDirection.Input);
+
+            await _connection.ExecuteAsync("Issues_report_package.delete_Issue", parm, commandType: CommandType.StoredProcedure);
+        }
+        public async void ChangeStatus(IssuesReport issuesReport)
+        {
+            var parm = new DynamicParameters();
+            parm.Add("id", issuesReport.ProblemId, DbType.Int64, ParameterDirection.Input);
+            parm.Add("Status", issuesReport.IssueStatus, DbType.Int64, ParameterDirection.Input);
+            await _connection.ExecuteAsync("Issues_report_package.change_status", parm, commandType: CommandType.StoredProcedure);
         }
 
 
