@@ -10,7 +10,7 @@ namespace CharityWork.Core.Repository {
 
 		void SendNormal(NormalEmail email);
 		void SendPdfMail(AttachmentEmail attachment);
-		string GenerateBody(string h1, string h2, string h3, Stream f);
+		string GenerateBody(string h1, string h2, string h3, string pAmount, Stream f);
 		string GenerateStyle(Stream f);
 	}
 }
