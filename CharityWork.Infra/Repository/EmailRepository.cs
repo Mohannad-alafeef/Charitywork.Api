@@ -23,7 +23,7 @@ using iTextSharp.tool.xml.css;
 
 namespace CharityWork.Infra.Repository {
 	public class EmailRepository : IEmailRepository {
-		public string GenerateBody(string pTitle, string pBody, string pCharity, Stream f) {
+		public string GenerateBody(string pTitle, string pBody, string pCharity,string pAmount, Stream f) {
 			string body = string.Empty;
 
 
@@ -34,6 +34,7 @@ namespace CharityWork.Infra.Repository {
 			body = body.Replace("{Header1}", pTitle);
 			body = body.Replace("{body}", pBody);
 			body = body.Replace("{charity}", pCharity);
+			body = body.Replace("{amount}", pAmount);
 			body = body.Replace("{date}", DateTime.Now.ToString());
 			return body;
 		}
@@ -77,7 +78,7 @@ namespace CharityWork.Infra.Repository {
 					var document = new Document();
 					PdfWriter writer = PdfWriter.GetInstance(document, ms);
 					document.Open();
-					var htmlBody = GenerateBody(attachment.PTitle, attachment.PBody, attachment.PCharity, attachment.PTemplate.OpenReadStream());
+					var htmlBody = GenerateBody(attachment.PTitle, attachment.PBody, attachment.PCharity,attachment.PAmount, attachment.PTemplate.OpenReadStream());
 					var cssBody = GenerateStyle(attachment.PStyle.OpenReadStream());
 					using (var strReader = new StringReader(htmlBody)) {
 						//Set factories

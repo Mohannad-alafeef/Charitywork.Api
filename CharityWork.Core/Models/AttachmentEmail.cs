@@ -13,6 +13,7 @@ namespace CharityWork.Core.Models {
 		public string? PTitle { get; set; }
 		public string? PBody { get; set; }
 		public string? PCharity { get; set; }
+		public string? PAmount { get; set; }
 		public IFormFile? PTemplate { get; set; }
 		public IFormFile? PStyle { get; set; }
 	}
