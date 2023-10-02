@@ -51,6 +51,7 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IGoalRepository, GoalRepository>();
 builder.Services.AddScoped<IVisaCardRepository, VisaCardRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IEmailRepository, EmailRepository>();
 
 
 //services
@@ -69,6 +70,7 @@ builder.Services.AddScoped<IGoalService, GoalService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IVisaCardService, VisaCardService>();
 builder.Services.AddScoped<IContactService,ContactService>();
+builder.Services.AddScoped<IEmailService,EmailService>();
 
 
 var app = builder.Build();
