@@ -1,3 +1,4 @@
+using CharityWork.Api.Hubs;
 using CharityWork.Core.Common;
 using CharityWork.Core.Repository;
 using CharityWork.Core.Services;
@@ -11,7 +12,10 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options => {
 	options.AddPolicy("policy", builder => {
-		builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+		builder.AllowAnyHeader()
+				   .AllowAnyMethod()
+				   .SetIsOriginAllowed((host) => true)
+				   .AllowCredentials();
 	});
 });
 builder.Services.AddAuthentication(opt => {
@@ -71,7 +75,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IVisaCardService, VisaCardService>();
 builder.Services.AddScoped<IContactService,ContactService>();
 builder.Services.AddScoped<IEmailService,EmailService>();
-
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -80,6 +84,7 @@ if (app.Environment.IsDevelopment()) {
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
@@ -88,6 +93,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors("policy");
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
 
