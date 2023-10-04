@@ -83,7 +83,7 @@ namespace CharityWork.Infra.Services
                     new Claim("email",result.Email),
                     new Claim("gender",result.Gender),
                     new Claim("phone",result.Phone),
-                    new Claim("ImagePath",result.ImagePath),
+                    new Claim("imagePath",result.ImagePath),
                     new Claim("roleId",result.Login.RoleId.ToString(),ClaimValueTypes.Integer64),
                     new Claim("loginDate",result.LoginDate.ToString(),ClaimValueTypes.DateTime),
 
