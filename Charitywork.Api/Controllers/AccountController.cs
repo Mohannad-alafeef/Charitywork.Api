@@ -58,7 +58,7 @@ namespace CharityWork.Api.Controllers {
 				await file.CopyToAsync(stream);
 			}   
 
-			userAccount.ImagePath = fullPath;
+			userAccount.ImagePath = fileName;
 			return userAccount;
 
 		}
