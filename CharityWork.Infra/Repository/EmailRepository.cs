@@ -41,7 +41,7 @@ namespace CharityWork.Infra.Repository {
 
 		public async void SendNormal(NormalEmail email) {
 			using (MailMessage mailMessage = new MailMessage()) {
-				mailMessage.From = new MailAddress("eng.mohannad.alafeef@gmail.com");
+				mailMessage.From = new MailAddress("****@gmail.com");
 				mailMessage.Subject = email.Subject;
 				mailMessage.Body = email.Body;
 
@@ -51,8 +51,8 @@ namespace CharityWork.Infra.Repository {
 				smtp.Host = "smtp.gmail.com";
 				smtp.EnableSsl = true;
 				NetworkCredential NetworkCred = new NetworkCredential();
-				NetworkCred.UserName = "eng.mohannad.alafeef@gmail.com";
-				NetworkCred.Password = "ukjaaxxcvakneyzl";
+				NetworkCred.UserName = "****@gmail.com";
+				NetworkCred.Password = "*************";
 				smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 				smtp.UseDefaultCredentials = false;
 				smtp.Credentials = NetworkCred;
@@ -90,7 +90,7 @@ namespace CharityWork.Infra.Repository {
 					document.Close();
 					bytesArray = ms.ToArray();
 				}
-				mailMessage.From = new MailAddress("eng.mohannad.alafeef@gmail.com");
+				mailMessage.From = new MailAddress("*****@gmail.com");
 				mailMessage.Subject = attachment.Subject;
 				mailMessage.Body = attachment.Body;
 				mailMessage.IsBodyHtml = true;
@@ -101,8 +101,8 @@ namespace CharityWork.Infra.Repository {
 				smtp.Host = "smtp.gmail.com";
 				smtp.EnableSsl = true;
 				NetworkCredential NetworkCred = new NetworkCredential();
-				NetworkCred.UserName = "eng.mohannad.alafeef@gmail.com";
-				NetworkCred.Password = "ukjaaxxcvakneyzl";
+				NetworkCred.UserName = "*****@gmail.com";
+				NetworkCred.Password = "*************";
 				smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 				smtp.UseDefaultCredentials = false;
 				smtp.Credentials = NetworkCred;
